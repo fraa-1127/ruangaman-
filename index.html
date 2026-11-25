@@ -1,0 +1,1451 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RuangAman — Sistem Pelaporan Bully & Konseling BK</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+
+    <script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        calm: {
+                            50: '#f0f9ff', 100: '#e0f2fe', 200: '#bae6fd', 300: '#7dd3fc',
+                            400: '#38bdf8', 500: '#0ea5e9', 600: '#0284c7', 700: '#0369a1', 900: '#0c4a6e',
+                        },
+                        sage: {
+                            50: '#f2fbf8', 100: '#d5f5eb', 200: '#abebd8', 300: '#6ee7b7',
+                            400: '#34d399', 500: '#10b981', 600: '#059669', 700: '#047857', 800: '#065f46',
+                        },
+                        warm: {
+                            50: '#fffbeb', 100: '#fef3c7', 500: '#f59e0b', 600: '#d97706',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-calm-200 selection:text-calm-900">
+
+    <!-- ==================== NAVBAR ==================== -->
+    <header class="sticky top-0 z-40 bg-white/85 backdrop-blur-md border-b border-slate-200/70">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <a href="#" class="flex items-center gap-2.5 group">
+                    <div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-calm-500 to-sage-500 flex items-center justify-center text-white shadow-md shadow-calm-500/20 group-hover:scale-105 transition-transform">
+                        <i data-lucide="shield-check" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <span class="font-display font-extrabold text-xl tracking-tight text-slate-800">Ruang<span class="text-calm-600">Aman</span></span>
+                        <span class="hidden sm:block text-[11px] font-medium text-slate-500 -mt-1">Layanan Bimbingan & Konseling</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex items-center gap-1 bg-slate-100/80 p-1 rounded-2xl">
+                    <a href="#beranda" class="px-4 py-1.5 rounded-xl text-sm font-medium text-slate-700 hover:text-calm-700 hover:bg-white transition-all">Beranda</a>
+                    <a href="#lapor" class="px-4 py-1.5 rounded-xl text-sm font-medium text-slate-700 hover:text-calm-700 hover:bg-white transition-all">Lapor & Curhat</a>
+                    <a href="#cek-tiket" class="px-4 py-1.5 rounded-xl text-sm font-medium text-slate-700 hover:text-calm-700 hover:bg-white transition-all">Cek Tiket</a>
+                    <a href="#konseling" class="px-4 py-1.5 rounded-xl text-sm font-medium text-slate-700 hover:text-calm-700 hover:bg-white transition-all">Jadwal BK</a>
+                    <a href="#edukasi" class="px-4 py-1.5 rounded-xl text-sm font-medium text-slate-700 hover:text-calm-700 hover:bg-white transition-all">Pojok Edukasi</a>
+                </nav>
+
+                <!-- Quick Action Button -->
+                <div class="flex items-center gap-2">
+                    <a href="#lapor" class="inline-flex items-center gap-2 bg-calm-600 hover:bg-calm-700 text-white text-sm font-semibold px-4 py-2.5 rounded-xl shadow-sm shadow-calm-600/20 transition-all active:scale-95">
+                        <i data-lucide="message-square-plus" class="w-4 h-4"></i>
+                        <span>Mulai Cerita</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==================== HERO SECTION ==================== -->
+    <section id="beranda" class="relative overflow-hidden pt-10 pb-16 sm:pt-16 sm:pb-24 bg-gradient-to-b from-calm-50 via-sage-50/40 to-slate-50">
+        <!-- Decorative Soft Blobs -->
+        <div class="absolute top-0 left-1/4 w-72 h-72 bg-calm-200/40 rounded-full blur-3xl -z-10"></div>
+        <div class="absolute bottom-0 right-1/4 w-80 h-80 bg-sage-200/40 rounded-full blur-3xl -z-10"></div>
+
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto">
+                <!-- Privacy Badge -->
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-sage-200 shadow-sm mb-6">
+                    <span class="flex h-2.5 w-2.5 relative">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-sage-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-sage-500"></span>
+                    </span>
+                    <span class="text-xs sm:text-sm font-semibold text-sage-700">Prototype layanan BK & Bisa Tanpa Nama (Anonim)</span>
+                </div>
+
+                <h1 class="font-display font-extrabold text-3xl sm:text-5xl text-slate-900 tracking-tight leading-tight mb-5">
+                    Ceritamu Aman, <br class="hidden sm:inline" />
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-calm-600 to-sage-600">Kamu Tidak Sendirian.</span>
+                </h1>
+
+                <p class="text-base sm:text-lg text-slate-600 leading-relaxed mb-8 max-w-2xl mx-auto">
+                    Takut atau malu datang langsung ke ruang BK? Sampaikan laporan perundungan (bullying), curhat masalah pribadi, atau atur jadwal konsultasi dengan Guru BK secara aman dari ponselmu.
+                </p>
+
+                <!-- Primary CTAs -->
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-3.5">
+                    <a href="#lapor" class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-calm-600 hover:bg-calm-700 text-white font-semibold px-7 py-4 rounded-2xl shadow-lg shadow-calm-600/25 transition-all hover:-translate-y-0.5">
+                        <i data-lucide="shield-alert" class="w-5 h-5"></i>
+                        <span>Lapor / Curhat Sekarang</span>
+                    </a>
+                    <a href="#konseling" class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-white hover:bg-sage-50 text-slate-700 border border-slate-200 hover:border-sage-300 font-semibold px-7 py-4 rounded-2xl shadow-sm transition-all hover:-translate-y-0.5">
+                        <i data-lucide="calendar-heart" class="w-5 h-5 text-sage-600"></i>
+                        <span>Jadwalkan Konseling BK</span>
+                    </a>
+                </div>
+
+                <!-- Trust Pillars -->
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-12 text-left">
+                    <div class="bg-white/80 backdrop-blur p-4 rounded-2xl border border-slate-200/80 flex items-start gap-3.5">
+                        <div class="p-2.5 rounded-xl bg-calm-100 text-calm-700 shrink-0">
+                            <i data-lucide="eye-off" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-display font-bold text-sm text-slate-800">Opsi Anonim Penuh</h3>
+                            <p class="text-xs text-slate-500 mt-0.5 leading-relaxed">Tidak perlu menuliskan nama atau kelas jika kamu belum siap mengungkap identitas.</p>
+                        </div>
+                    </div>
+                    <div class="bg-white/80 backdrop-blur p-4 rounded-2xl border border-slate-200/80 flex items-start gap-3.5">
+                        <div class="p-2.5 rounded-xl bg-sage-100 text-sage-700 shrink-0">
+                            <i data-lucide="ticket" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-display font-bold text-sm text-slate-800">Pantau Via Kode Tiket</h3>
+                            <p class="text-xs text-slate-500 mt-0.5 leading-relaxed">Dapatkan kode rahasia untuk membaca respons hangat & solusi dari Guru BK.</p>
+                        </div>
+                    </div>
+                    <div class="bg-white/80 backdrop-blur p-4 rounded-2xl border border-slate-200/80 flex items-start gap-3.5">
+                        <div class="p-2.5 rounded-xl bg-warm-100 text-warm-600 shrink-0">
+                            <i data-lucide="heart-handshake" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-display font-bold text-sm text-slate-800">Tanpa Penghakiman</h3>
+                            <p class="text-xs text-slate-500 mt-0.5 leading-relaxed">Guru BK siap mendengarkan dengan empati dan menjaga kerahasiaanmu sesuai kode etik.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== FITUR 1: WIZARD PELAPORAN 3 LANGKAH ==================== -->
+    <section id="lapor" class="py-14 sm:py-20">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10">
+                <span class="text-xs font-bold uppercase tracking-wider text-calm-600 bg-calm-100 px-3 py-1 rounded-full">Langkah Demi Langkah</span>
+                <h2 class="font-display font-extrabold text-2xl sm:text-3xl text-slate-900 mt-3">Sampaikan Laporan atau Ceritamu</h2>
+                <p class="text-sm sm:text-base text-slate-600 mt-2">Ikuti 3 langkah mudah di bawah ini. Kamu memegang kendali penuh atas apa yang ingin kamu bagikan.</p>
+            </div>
+
+            <!-- Wizard Container -->
+            <div class="bg-white rounded-3xl shadow-xl shadow-slate-200/60 border border-slate-200/80 overflow-hidden">
+                <!-- Stepper Header -->
+                <div class="bg-slate-50/90 border-b border-slate-200/80 px-6 py-5">
+                    <div class="flex items-center justify-between max-w-xl mx-auto">
+                        <!-- Step 1 Indicator -->
+                        <div class="flex items-center gap-2.5" id="step-ind-1">
+                            <div class="w-8 h-8 rounded-full bg-calm-600 text-white font-bold text-sm flex items-center justify-center transition-colors">1</div>
+                            <span class="text-xs sm:text-sm font-bold text-slate-800">Pilih Masalah</span>
+                        </div>
+                        <div class="h-0.5 flex-1 mx-3 bg-slate-200 rounded-full overflow-hidden">
+                            <div id="progress-bar-1" class="h-full bg-calm-600 w-0 transition-all duration-300"></div>
+                        </div>
+                        <!-- Step 2 Indicator -->
+                        <div class="flex items-center gap-2.5 opacity-50" id="step-ind-2">
+                            <div class="w-8 h-8 rounded-full bg-slate-300 text-slate-700 font-bold text-sm flex items-center justify-center transition-colors">2</div>
+                            <span class="text-xs sm:text-sm font-semibold text-slate-600">Tulis Cerita</span>
+                        </div>
+                        <div class="h-0.5 flex-1 mx-3 bg-slate-200 rounded-full overflow-hidden">
+                            <div id="progress-bar-2" class="h-full bg-calm-600 w-0 transition-all duration-300"></div>
+                        </div>
+                        <!-- Step 3 Indicator -->
+                        <div class="flex items-center gap-2.5 opacity-50" id="step-ind-3">
+                            <div class="w-8 h-8 rounded-full bg-slate-300 text-slate-700 font-bold text-sm flex items-center justify-center transition-colors">3</div>
+                            <span class="text-xs sm:text-sm font-semibold text-slate-600">Tiket Rahasia</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Wizard Body -->
+                <div class="p-6 sm:p-10">
+                    <!-- STEP 1: PILIH JENIS MASALAH -->
+                    <div id="wizard-step-1" class="space-y-6">
+                        <div>
+                            <h3 class="font-display font-bold text-lg sm:text-xl text-slate-800">Apa yang sedang kamu alami atau lihat?</h3>
+                            <p class="text-sm text-slate-500 mt-1">Pilih satu kategori yang paling mendekati situasimu saat ini.</p>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5" id="category-grid">
+                            <!-- Category 1 -->
+                            <button type="button" onclick="selectCategory(this, 'Perundungan / Bullying Fisik')" class="category-card text-left p-4 rounded-2xl border-2 border-slate-200 hover:border-calm-400 hover:bg-calm-50/40 transition-all group focus:outline-none">
+                                <div class="w-11 h-11 rounded-xl bg-rose-100 text-rose-600 flex items-center justify-center mb-3 group-hover:scale-105 transition-transform">
+                                    <i data-lucide="hand-metal" class="w-6 h-6"></i>
+                                </div>
+                                <h4 class="font-display font-bold text-slate-800 text-sm">Bullying Fisik</h4>
+                                <p class="text-xs text-slate-500 mt-1 leading-relaxed">Dipukul, didorong, dirusak barangnya, atau ancaman fisik lainnya.</p>
+                            </button>
+
+                            <!-- Category 2 -->
+                            <button type="button" onclick="selectCategory(this, 'Cyberbullying (Media Sosial)')" class="category-card text-left p-4 rounded-2xl border-2 border-slate-200 hover:border-calm-400 hover:bg-calm-50/40 transition-all group focus:outline-none">
+                                <div class="w-11 h-11 rounded-xl bg-purple-100 text-purple-600 flex items-center justify-center mb-3 group-hover:scale-105 transition-transform">
+                                    <i data-lucide="smartphone-nfc" class="w-6 h-6"></i>
+                                </div>
+                                <h4 class="font-display font-bold text-slate-800 text-sm">Cyberbullying</h4>
+                                <p class="text-xs text-slate-500 mt-1 leading-relaxed">Terror chat, penyebaran foto/aib, komentar jahat di medsos atau grup.</p>
+                            </button>
+
+                            <!-- Category 3 -->
+                            <button type="button" onclick="selectCategory(this, 'Bullying Verbal / Pengucilan Sosial')" class="category-card text-left p-4 rounded-2xl border-2 border-slate-200 hover:border-calm-400 hover:bg-calm-50/40 transition-all group focus:outline-none">
+                                <div class="w-11 h-11 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center mb-3 group-hover:scale-105 transition-transform">
+                                    <i data-lucide="message-circle-warning" class="w-6 h-6"></i>
+                                </div>
+                                <h4 class="font-display font-bold text-slate-800 text-sm">Verbal / Sosial</h4>
+                                <p class="text-xs text-slate-500 mt-1 leading-relaxed">Diejek, dihina, difitnah, atau sengaja dikucilkan dari pertemanan.</p>
+                            </button>
+
+                            <!-- Category 4 -->
+                            <button type="button" onclick="selectCategory(this, 'Masalah Akademik & Stres Belajar')" class="category-card text-left p-4 rounded-2xl border-2 border-slate-200 hover:border-calm-400 hover:bg-calm-50/40 transition-all group focus:outline-none">
+                                <div class="w-11 h-11 rounded-xl bg-calm-100 text-calm-600 flex items-center justify-center mb-3 group-hover:scale-105 transition-transform">
+                                    <i data-lucide="book-open-check" class="w-6 h-6"></i>
+                                </div>
+                                <h4 class="font-display font-bold text-slate-800 text-sm">Akademik & Stres</h4>
+                                <p class="text-xs text-slate-500 mt-1 leading-relaxed">Tekanan nilai, cemas ujian, sulit konsentrasi, atau bingung jurusan.</p>
+                            </button>
+
+                            <!-- Category 5 -->
+                            <button type="button" onclick="selectCategory(this, 'Masalah Keluarga / Pribadi')" class="category-card text-left p-4 rounded-2xl border-2 border-slate-200 hover:border-calm-400 hover:bg-calm-50/40 transition-all group focus:outline-none sm:col-span-2 lg:col-span-2">
+                                <div class="flex items-start gap-4">
+                                    <div class="w-11 h-11 rounded-xl bg-sage-100 text-sage-600 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
+                                        <i data-lucide="heart-pulse" class="w-6 h-6"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-display font-bold text-slate-800 text-sm">Masalah Keluarga / Emosional Pribadi</h4>
+                                        <p class="text-xs text-slate-500 mt-1 leading-relaxed">Konflik di rumah, merasa kesepian, cemas berlebih, atau butuh teman cerita yang bisa dipercaya.</p>
+                                    </div>
+                                </div>
+                            </button>
+                        </div>
+
+                        <div id="step1-error" class="hidden text-xs font-medium text-rose-600 bg-rose-50 border border-rose-200 px-4 py-2.5 rounded-xl flex items-center gap-2">
+                            <i data-lucide="alert-circle" class="w-4 h-4 shrink-0"></i>
+                            <span>Silakan pilih salah satu jenis masalah terlebih dahulu sebelum melanjutkan.</span>
+                        </div>
+
+                        <div class="flex justify-end pt-2">
+                            <button type="button" onclick="goToStep(2)" class="inline-flex items-center gap-2 bg-calm-600 hover:bg-calm-700 text-white font-semibold px-6 py-3 rounded-xl shadow-sm transition-all">
+                                <span>Lanjut Tulis Cerita</span>
+                                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- STEP 2: TULIS CERITA & OPSI ANONIM -->
+                    <div id="wizard-step-2" class="hidden space-y-6">
+                        <div class="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-slate-100">
+                            <div>
+                                <span class="text-xs text-slate-500">Kategori terpilih:</span>
+                                <h3 id="selected-category-label" class="font-display font-bold text-base sm:text-lg text-calm-700">-</h3>
+                            </div>
+                            <button type="button" onclick="goToStep(1)" class="text-xs font-semibold text-slate-500 hover:text-calm-600 underline">Ubah Kategori</button>
+                        </div>
+
+                        <!-- Prominent Anonymity Toggle Card -->
+                        <div id="anon-card" class="p-4 sm:p-5 rounded-2xl bg-sage-50 border-2 border-sage-300 transition-all">
+                            <div class="flex items-center justify-between gap-4">
+                                <div class="flex items-center gap-3.5">
+                                    <div id="anon-icon-box" class="w-11 h-11 rounded-xl bg-sage-600 text-white flex items-center justify-center shrink-0 transition-colors">
+                                        <i data-lucide="venetian-mask" class="w-6 h-6"></i>
+                                    </div>
+                                    <div>
+                                        <div class="flex items-center gap-2">
+                                            <h4 class="font-display font-bold text-slate-800 text-sm sm:text-base">Kirim Secara Anonim</h4>
+                                            <span id="anon-badge" class="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-sage-600 text-white">AKTIF</span>
+                                        </div>
+                                        <p id="anon-desc" class="text-xs text-sage-800 mt-0.5">Identitas disembunyikan. Guru BK tidak akan mengetahui nama maupun kelasmu.</p>
+                                    </div>
+                                </div>
+
+                                <!-- Toggle Switch -->
+                                <label class="relative inline-flex items-center cursor-pointer shrink-0">
+                                    <input type="checkbox" id="anon-toggle" class="sr-only peer" checked onchange="toggleAnonymity()">
+                                    <div class="w-14 h-8 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[4px] after:left-[4px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-sage-600"></div>
+                                </label>
+                            </div>
+
+                            <!-- Identity Inputs (Hidden when Anonymous is ON) -->
+                            <div id="identity-fields" class="hidden grid-cols-1 sm:grid-cols-2 gap-3.5 mt-4 pt-4 border-t border-slate-200/80">
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-700 mb-1">Nama Lengkap / Nama Panggilan</label>
+                                    <input type="text" id="reporter-name" placeholder="Contoh: Aulia Putri" class="w-full px-3.5 py-2.5 text-sm bg-white border border-slate-300 rounded-xl focus:ring-2 focus:ring-calm-500 focus:border-calm-500 outline-none">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-700 mb-1">Kelas</label>
+                                    <input type="text" id="reporter-class" placeholder="Contoh: XI IPA 2" class="w-full px-3.5 py-2.5 text-sm bg-white border border-slate-300 rounded-xl focus:ring-2 focus:ring-calm-500 focus:border-calm-500 outline-none">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Role (Korban / Saksi) -->
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Kamu melapor sebagai:</label>
+                            <div class="grid grid-cols-2 gap-3">
+                                <label class="cursor-pointer">
+                                    <input type="radio" name="reporter-role" value="Saya Mengalami Sendiri" class="peer sr-only" checked>
+                                    <div class="p-3 rounded-xl border border-slate-200 peer-checked:border-calm-600 peer-checked:bg-calm-50 text-center text-xs sm:text-sm font-semibold text-slate-700 peer-checked:text-calm-700 transition-all">
+                                        Saya Mengalami Sendiri
+                                    </div>
+                                </label>
+                                <label class="cursor-pointer">
+                                    <input type="radio" name="reporter-role" value="Saya Melihat Teman Mengalami (Saksi)" class="peer sr-only">
+                                    <div class="p-3 rounded-xl border border-slate-200 peer-checked:border-calm-600 peer-checked:bg-calm-50 text-center text-xs sm:text-sm font-semibold text-slate-700 peer-checked:text-calm-700 transition-all">
+                                        Melihat Teman (Saksi)
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Story Textarea + Bukti Foto/Video -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 items-start">
+                            <!-- Kolom kiri: cerita -->
+                            <div>
+                                <label for="story-text" class="block text-sm font-bold text-slate-800 mb-1.5">Ceritakan Kronologi atau Perasaanmu</label>
+                                <textarea id="story-text" rows="11" placeholder="Tuliskan apa yang terjadi, kapan, di mana, atau bagaimana perasaanmu saat ini. Bebas bercerita dengan bahasamu sendiri. Tidak perlu takut, cerita ini hanya dibaca oleh Guru BK..." class="w-full p-4 text-sm bg-slate-50 border border-slate-300 rounded-2xl focus:bg-white focus:ring-2 focus:ring-calm-500 focus:border-calm-500 outline-none transition-all"></textarea>
+                            </div>
+
+                            <!-- Kolom kanan: bukti foto/video -->
+                            <div>
+                                <div class="flex justify-between items-center mb-1.5">
+                                    <span class="text-sm font-bold text-slate-800">Bukti Foto / Video <span class="font-medium text-slate-400">(opsional)</span></span>
+                                    <span id="evidence-count" class="text-xs font-semibold text-slate-500">0/5 file</span>
+                                </div>
+
+                                <label id="evidence-dropzone" for="evidence-input" class="flex flex-col items-center justify-center gap-1.5 text-center px-4 py-5 rounded-2xl border-2 border-dashed border-slate-300 bg-slate-50 hover:border-calm-400 hover:bg-calm-50/50 cursor-pointer transition-all">
+                                    <div class="p-2 rounded-xl bg-calm-100 text-calm-700">
+                                        <i data-lucide="upload" class="w-5 h-5"></i>
+                                    </div>
+                                    <span class="text-sm font-semibold text-slate-700">Tambah foto atau video</span>
+                                    <span class="text-xs text-slate-500">Klik atau seret file ke sini. Foto maks. 10 MB, video maks. 100 MB.</span>
+                                    <input id="evidence-input" type="file" accept="image/*,video/*" multiple class="sr-only" onchange="handleEvidenceInput(event)">
+                                </label>
+
+                                <div id="evidence-error" class="hidden mt-2 text-xs font-medium text-rose-600 bg-rose-50 border border-rose-200 px-3 py-2 rounded-xl"></div>
+
+                                <div id="evidence-list" class="grid grid-cols-2 gap-2.5 mt-3"></div>
+
+                                <p class="mt-3 text-[11px] leading-relaxed text-slate-500">
+                                    Klik foto atau video untuk memperbesar. Foto dan video dari ponsel bisa menyimpan data lokasi atau memperlihatkan wajah, jadi pastikan kamu nyaman membagikannya. Di prototipe ini file hanya tampil di perangkatmu dan belum dikirim ke mana pun.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Urgency Level -->
+                        <div>
+                            <label class="block text-sm font-bold text-slate-800 mb-2">Tingkat Urgensi</label>
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                                <label class="cursor-pointer">
+                                    <input type="radio" name="urgency" value="Biasa" class="peer sr-only" checked>
+                                    <div class="p-3.5 rounded-2xl border-2 border-slate-200 peer-checked:border-sage-500 peer-checked:bg-sage-50/70 transition-all">
+                                        <div class="flex items-center gap-2 font-bold text-sm text-slate-800">
+                                            <span class="w-2.5 h-2.5 rounded-full bg-sage-500"></span> Biasa
+                                        </div>
+                                        <p class="text-xs text-slate-500 mt-1">Ingin bercerita & butuh saran BK.</p>
+                                    </div>
+                                </label>
+                                <label class="cursor-pointer">
+                                    <input type="radio" name="urgency" value="Butuh Segera" class="peer sr-only">
+                                    <div class="p-3.5 rounded-2xl border-2 border-slate-200 peer-checked:border-amber-500 peer-checked:bg-amber-50/70 transition-all">
+                                        <div class="flex items-center gap-2 font-bold text-sm text-slate-800">
+                                            <span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span> Butuh Segera
+                                        </div>
+                                        <p class="text-xs text-slate-500 mt-1">Kejadian berulang & mulai mengganggu.</p>
+                                    </div>
+                                </label>
+                                <label class="cursor-pointer">
+                                    <input type="radio" name="urgency" value="Darurat" class="peer sr-only">
+                                    <div class="p-3.5 rounded-2xl border-2 border-slate-200 peer-checked:border-rose-500 peer-checked:bg-rose-50/70 transition-all">
+                                        <div class="flex items-center gap-2 font-bold text-sm text-slate-800">
+                                            <span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span> Darurat
+                                        </div>
+                                        <p class="text-xs text-slate-500 mt-1">Ada ancaman bahaya fisik/mental segera.</p>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div id="step2-error" class="hidden text-xs font-medium text-rose-600 bg-rose-50 border border-rose-200 px-4 py-2.5 rounded-xl flex items-center gap-2">
+                            <i data-lucide="alert-circle" class="w-4 h-4 shrink-0"></i>
+                            <span id="step2-error-text">Mohon tuliskan ceritamu terlebih dahulu agar Guru BK dapat memahaminya.</span>
+                        </div>
+
+                        <div class="flex items-center justify-between pt-2">
+                            <button type="button" onclick="goToStep(1)" class="inline-flex items-center gap-2 text-slate-600 hover:text-slate-900 font-semibold px-4 py-3 rounded-xl hover:bg-slate-100 transition-all">
+                                <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                                <span>Kembali</span>
+                            </button>
+                            <button type="button" onclick="submitReport()" class="inline-flex items-center gap-2 bg-sage-600 hover:bg-sage-700 text-white font-semibold px-7 py-3.5 rounded-xl shadow-md shadow-sage-600/20 transition-all">
+                                <i data-lucide="send" class="w-4 h-4"></i>
+                                <span>Kirim ke Guru BK</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- STEP 3: KONFIRMASI SUKSES & TIKET RAHASIA -->
+                    <div id="wizard-step-3" class="hidden text-center py-4 space-y-6">
+                        <div class="w-16 h-16 rounded-full bg-sage-100 text-sage-600 flex items-center justify-center mx-auto">
+                            <i data-lucide="check-circle-2" class="w-10 h-10"></i>
+                        </div>
+
+                        <div class="max-w-lg mx-auto">
+                            <h3 class="font-display font-extrabold text-2xl text-slate-900">Terima Kasih Sudah Berani Bercerita!</h3>
+                            <p class="text-sm text-slate-600 mt-2 leading-relaxed">
+                                Laporanmu telah masuk ke ruang aman Guru BK. Simpan <strong>Kode Tiket Rahasia</strong> di bawah ini untuk memantau balasan tanpa perlu akun atau login.
+                            </p>
+                        </div>
+
+                        <!-- Ticket Box -->
+                        <div class="max-w-md mx-auto bg-gradient-to-br from-calm-50 to-sage-50 border-2 border-dashed border-calm-300 rounded-2xl p-6">
+                            <span class="text-xs font-bold uppercase tracking-wider text-slate-500">Kode Tiket Rahasiamu</span>
+                            <div class="flex items-center justify-center gap-3 mt-2">
+                                <span id="generated-ticket-code" class="font-display font-extrabold text-3xl tracking-wider text-calm-700">#RA-8492</span>
+                                <button type="button" onclick="copyTicketCode()" class="p-2 rounded-xl bg-white border border-slate-200 hover:bg-calm-50 text-slate-600 hover:text-calm-700 transition-colors" title="Salin Kode">
+                                    <i data-lucide="copy" class="w-4 h-4"></i>
+                                </button>
+                            </div>
+                            <p id="copy-feedback" class="text-xs font-semibold text-sage-600 mt-1.5 hidden">Kode tiket berhasil disalin!</p>
+                            <div class="mt-4 pt-3 border-t border-slate-200/80 flex flex-wrap justify-between gap-x-4 gap-y-1 text-xs text-slate-500">
+                                <span>Status Identitas: <strong id="summary-anon" class="text-sage-700">Anonim</strong></span>
+                                 <span>Urgensi: <strong id="summary-urgency" class="text-slate-700">Biasa</strong></span>
+                                   <span>Bukti: <strong id="summary-evidence" class="text-slate-700">0 file</strong></span>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
+                            <button type="button" onclick="prefillAndCheckTicket()" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-calm-600 hover:bg-calm-700 text-white font-semibold px-6 py-3 rounded-xl transition-all">
+                                <i data-lucide="search-check" class="w-4 h-4"></i>
+                                <span>Simulasikan Cek Balasan BK</span>
+                            </button>
+                            <button type="button" onclick="resetWizard()" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold px-6 py-3 rounded-xl transition-all">
+                                <span>Buat Laporan Baru</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== SIMULASI CEK STATUS TIKET ==================== -->
+    <section id="cek-tiket" class="py-12 bg-calm-50/70 border-y border-calm-100">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200/80">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+                    <div class="max-w-md">
+                        <div class="inline-flex items-center gap-1.5 text-xs font-bold text-calm-700 bg-calm-100 px-3 py-1 rounded-full mb-2">
+                            <i data-lucide="key-round" class="w-3.5 h-3.5"></i>
+                            <span>Pantau Tanpa Login</span>
+                        </div>
+                        <h3 class="font-display font-bold text-xl text-slate-900">Cek Balasan Guru BK</h3>
+                        <p class="text-xs sm:text-sm text-slate-600 mt-1">Masukkan kode tiketmu (atau coba kode contoh <button type="button" onclick="useSampleTicket()" class="font-bold text-calm-600 underline">#RA-2026</button>) untuk melihat balasan dari Guru BK.</p>
+                    </div>
+
+                    <div class="flex-1 max-w-md">
+                        <div class="flex gap-2">
+                            <input type="text" id="ticket-lookup-input" placeholder="Contoh: #RA-2026" class="w-full px-4 py-3 text-sm font-semibold uppercase bg-slate-50 border border-slate-300 rounded-xl focus:bg-white focus:ring-2 focus:ring-calm-500 outline-none">
+                            <button type="button" onclick="checkTicketStatus()" class="bg-slate-800 hover:bg-slate-900 text-white text-sm font-semibold px-5 py-3 rounded-xl shrink-0 transition-colors">
+                                Cek Tiket
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ticket Result Display -->
+                <div id="ticket-result-box" class="hidden mt-6 pt-6 border-t border-slate-200">
+                    <div class="bg-sage-50/80 border border-sage-200 rounded-2xl p-5">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                            <div class="flex items-center gap-2">
+                                <span id="res-ticket-code" class="font-display font-extrabold text-sm bg-white px-3 py-1 rounded-lg border border-sage-200 text-slate-800">#RA-2026</span>
+                                <span id="res-ticket-cat" class="text-xs font-semibold text-slate-600">Cyberbullying</span>
+                            </div>
+                            <span class="inline-flex items-center gap-1.5 text-xs font-bold text-sage-700 bg-sage-200/70 px-3 py-1 rounded-full">
+                                <i data-lucide="message-circle-heart" class="w-3.5 h-3.5"></i> Sudah Direspons Guru BK
+                            </span>
+                        </div>
+
+                        <div class="bg-white rounded-xl p-4 border border-slate-200/80 space-y-2">
+                            <div class="flex items-center gap-2.5">
+                                <div class="w-8 h-8 rounded-full bg-calm-100 text-calm-700 flex items-center justify-center font-bold text-xs">IA</div>
+                                <div>
+                                    <p class="text-xs font-bold text-slate-800">Ibu Guru BK, S.Pd. (Koordinator BK)</p>
+                                    <p class="text-[11px] text-slate-400">Dibalas hari ini • Privasi Terjaga</p>
+                                </div>
+                            </div>
+                            <p id="res-counselor-reply" class="text-sm text-slate-700 leading-relaxed pt-1">
+                                "Halo Nak, terima kasih banyak sudah berani bercerita ke RuangAman. Ibu mengapresiasi keberanianmu dan memastikan identitasmu tetap aman. Kamu tidak salah dalam situasi ini. Jika kamu nyaman, yuk kita ngobrol santai via chat/tatap muka supaya Ibu bisa bantu langkah perlindungan terbaik untukmu."
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== FITUR 2: JADWALKAN SESI KONSELING BK ==================== -->
+    <section id="konseling" class="py-16 sm:py-20">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="text-xs font-bold uppercase tracking-wider text-sage-700 bg-sage-100 px-3 py-1 rounded-full">Ngobrol Nyaman</span>
+                <h2 class="font-display font-extrabold text-2xl sm:text-3xl text-slate-900 mt-3">Jadwalkan Sesi Konseling BK</h2>
+                <p class="text-sm sm:text-base text-slate-600 mt-2">Pilih guru BK, metode konsultasi (tatap muka atau online), serta waktu yang paling pas buat kamu.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                <!-- Left Column: Counselor Selection & Method -->
+                <div class="lg:col-span-7 space-y-6 bg-white p-6 sm:p-8 rounded-3xl border border-slate-200/80 shadow-sm">
+                    <!-- 1. Pilih Guru BK -->
+                    <div>
+                        <label class="block text-sm font-bold text-slate-800 mb-3">1. Pilih Konselor / Guru BK</label>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                            <button type="button" onclick="selectCounselor(this, 'Ibu Guru BK, S.Pd.', 'Konselor Remaja & Anti-Bullying')" class="counselor-card active-counselor text-left p-4 rounded-2xl border-2 border-calm-600 bg-calm-50/50 transition-all">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-calm-500 to-calm-600 text-white font-display font-bold flex items-center justify-center text-base shrink-0">
+                                        IA
+                                    </div>
+                                    <div>
+                                        <span class="inline-flex items-center gap-1 text-[11px] font-semibold text-sage-700 bg-sage-100 px-2 py-0.5 rounded-full">
+                                            <span class="w-1.5 h-1.5 rounded-full bg-sage-500"></span> Tersedia Hari Ini
+                                        </span>
+                                        <h4 class="font-display font-bold text-slate-900 text-sm mt-1">Ibu Guru BK, S.Pd.</h4>
+                                        <p class="text-xs text-slate-500">Konselor Remaja & Bullying</p>
+                                    </div>
+                                </div>
+                            </button>
+
+                            <button type="button" onclick="selectCounselor(this, 'Bapak Guru BK, M.Psi.', 'Psikolog Pendidikan & Karir')" class="counselor-card text-left p-4 rounded-2xl border-2 border-slate-200 hover:border-calm-400 transition-all">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-sage-500 to-sage-600 text-white font-display font-bold flex items-center justify-center text-base shrink-0">
+                                        BD
+                                    </div>
+                                    <div>
+                                        <span class="inline-flex items-center gap-1 text-[11px] font-semibold text-sage-700 bg-sage-100 px-2 py-0.5 rounded-full">
+                                            <span class="w-1.5 h-1.5 rounded-full bg-sage-500"></span> Tersedia Hari Ini
+                                        </span>
+                                        <h4 class="font-display font-bold text-slate-900 text-sm mt-1">Bapak Guru BK, M.Psi.</h4>
+                                        <p class="text-xs text-slate-500">Psikolog Pendidikan & Stres</p>
+                                    </div>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 2. Pilih Metode -->
+                    <div>
+                        <label class="block text-sm font-bold text-slate-800 mb-3">2. Pilih Metode Konsultasi</label>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                            <label class="cursor-pointer">
+                                <input type="radio" name="session-method" value="Tatap Muka (Ruang Konseling Privat)" class="peer sr-only" checked onchange="updateBookingSummary()">
+                                <div class="p-4 rounded-2xl border-2 border-slate-200 peer-checked:border-sage-600 peer-checked:bg-sage-50/60 transition-all flex items-start gap-3">
+                                    <div class="p-2 rounded-xl bg-sage-100 text-sage-700 shrink-0">
+                                        <i data-lucide="users" class="w-5 h-5"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-sm text-slate-800">Tatap Muka</h4>
+                                        <p class="text-xs text-slate-500 mt-0.5">Di Ruang Konseling Privat (pintu tertutup & nyaman).</p>
+                                    </div>
+                                </div>
+                            </label>
+
+                            <label class="cursor-pointer">
+                                <input type="radio" name="session-method" value="Online (Chat / Voice Call)" class="peer sr-only" onchange="updateBookingSummary()">
+                                <div class="p-4 rounded-2xl border-2 border-slate-200 peer-checked:border-calm-600 peer-checked:bg-calm-50/60 transition-all flex items-start gap-3">
+                                    <div class="p-2 rounded-xl bg-calm-100 text-calm-700 shrink-0">
+                                        <i data-lucide="video" class="w-5 h-5"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-sm text-slate-800">Online (Chat / Call)</h4>
+                                        <p class="text-xs text-slate-500 mt-0.5">Bisa tanpa menyalakan kamera jika kamu masih malu.</p>
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- 3. Pilih Tanggal & Jam -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label for="booking-date" class="block text-sm font-bold text-slate-800 mb-2">3. Pilih Tanggal</label>
+                            <input type="date" id="booking-date" onchange="updateBookingSummary()" class="w-full px-4 py-3 text-sm bg-slate-50 border border-slate-300 rounded-xl focus:bg-white focus:ring-2 focus:ring-calm-500 outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-slate-800 mb-2">4. Pilih Jam Sesi</label>
+                            <div class="grid grid-cols-2 gap-2" id="time-slots">
+                                <button type="button" onclick="selectTimeSlot(this, '09:30 WIB (Istirahat 1)')" class="time-slot active-slot py-2.5 px-2 text-xs font-bold rounded-xl border-2 border-calm-600 bg-calm-50 text-calm-700">09:30 WIB</button>
+                                <button type="button" onclick="selectTimeSlot(this, '12:15 WIB (Istirahat 2)')" class="time-slot py-2.5 px-2 text-xs font-semibold rounded-xl border-2 border-slate-200 text-slate-600 hover:border-calm-400">12:15 WIB</button>
+                                <button type="button" onclick="selectTimeSlot(this, '14:30 WIB (Sepulang Sekolah)')" class="time-slot py-2.5 px-2 text-xs font-semibold rounded-xl border-2 border-slate-200 text-slate-600 hover:border-calm-400">14:30 WIB</button>
+                                <button type="button" onclick="selectTimeSlot(this, '16:00 WIB (Sore Online)')" class="time-slot py-2.5 px-2 text-xs font-semibold rounded-xl border-2 border-slate-200 text-slate-600 hover:border-calm-400">16:00 WIB</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 5. Nama / Samaran -->
+                    <div>
+                        <label for="booking-alias" class="block text-sm font-bold text-slate-800 mb-1.5">Nama atau Nama Samaran</label>
+                        <input type="text" id="booking-alias" oninput="updateBookingSummary()" placeholder="Boleh pakai nama samaran, misal: Bintang_11" class="w-full px-4 py-3 text-sm bg-slate-50 border border-slate-300 rounded-xl focus:bg-white focus:ring-2 focus:ring-calm-500 outline-none">
+                    </div>
+                </div>
+
+                <!-- Right Column: Booking Summary Card -->
+                <div class="lg:col-span-5 bg-gradient-to-br from-slate-900 to-slate-800 text-white p-6 sm:p-8 rounded-3xl shadow-xl">
+                    <div class="flex items-center gap-2.5 text-sage-300 text-xs font-bold uppercase tracking-wider mb-4">
+                        <i data-lucide="calendar-check" class="w-4 h-4"></i>
+                        <span>Ringkasan Jadwal Kamu</span>
+                    </div>
+
+                    <h3 class="font-display font-bold text-xl mb-6">Detail Sesi Konseling</h3>
+
+                    <div class="space-y-4 text-sm border-y border-slate-700/80 py-5">
+                        <div class="flex justify-between gap-4">
+                            <span class="text-slate-400">Konselor BK</span>
+                            <span id="sum-counselor" class="font-semibold text-right text-white">Ibu Guru BK, S.Pd.</span>
+                        </div>
+                        <div class="flex justify-between gap-4">
+                            <span class="text-slate-400">Metode</span>
+                            <span id="sum-method" class="font-semibold text-right text-sage-300">Tatap Muka (Ruang Konseling Privat)</span>
+                        </div>
+                        <div class="flex justify-between gap-4">
+                            <span class="text-slate-400">Tanggal</span>
+                            <span id="sum-date" class="font-semibold text-right text-white">Besok</span>
+                        </div>
+                        <div class="flex justify-between gap-4">
+                            <span class="text-slate-400">Waktu</span>
+                            <span id="sum-time" class="font-semibold text-right text-white">09:30 WIB (Istirahat 1)</span>
+                        </div>
+                        <div class="flex justify-between gap-4">
+                            <span class="text-slate-400">Nama / Samaran</span>
+                            <span id="sum-alias" class="font-semibold text-right text-calm-300">Siswa Anonim</span>
+                        </div>
+                    </div>
+
+                    <p class="text-xs text-slate-400 mt-4 leading-relaxed">
+                        *Surat izin keluar kelas (jika jam pelajaran) akan dibuatkan secara rahasia tanpa mencantumkan alasan konseling.
+                    </p>
+
+                    <button type="button" onclick="confirmBooking()" class="w-full mt-6 bg-sage-500 hover:bg-sage-600 text-slate-950 font-bold py-3.5 px-6 rounded-2xl shadow-lg shadow-sage-500/20 transition-all flex items-center justify-center gap-2">
+                        <i data-lucide="check-circle" class="w-5 h-5"></i>
+                        <span>Konfirmasi Jadwal Sesi</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== FITUR 3: POJOK EDUKASI KESEHATAN MENTAL ==================== -->
+    <section id="edukasi" class="py-16 bg-sage-50/60 border-t border-slate-200/80">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-10 gap-4">
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-wider text-calm-700 bg-calm-100 px-3 py-1 rounded-full">Pojok Edukasi</span>
+                    <h2 class="font-display font-extrabold text-2xl sm:text-3xl text-slate-900 mt-3">Pahami Dirimu & Jaga Kesehatan Mental</h2>
+                    <p class="text-sm text-slate-600 mt-1">Bacaan singkat yang dikurasi oleh tim psikolog & Guru BK untuk menemani harimu.</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Article Card 1 -->
+                <article onclick="openArticleModal(0)" class="cursor-pointer bg-white rounded-3xl p-6 border border-slate-200/80 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all flex flex-col justify-between group">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-bold text-purple-700 bg-purple-100 px-3 py-1 rounded-full">Anti-Bullying</span>
+                            <span class="text-xs text-slate-400 flex items-center gap-1"><i data-lucide="clock" class="w-3.5 h-3.5"></i> 3 mnt baca</span>
+                        </div>
+                        <h3 class="font-display font-bold text-lg text-slate-900 group-hover:text-calm-600 transition-colors">
+                            Cara Menghadapi Cyberbullying Tanpa Panik
+                        </h3>
+                        <p class="text-sm text-slate-600 mt-2.5 line-clamp-3 leading-relaxed">
+                            Mendapat pesan jahat atau komentar menyakitkan di media sosial memang bikin cemas. Pelajari 4 langkah praktis mengamankan bukti dan menjaga kesehatan mentalmu.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-sm font-bold text-calm-600">
+                        <span>Baca Selengkapnya</span>
+                        <i data-lucide="arrow-up-right" class="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
+                    </div>
+                </article>
+
+                <!-- Article Card 2 -->
+                <article onclick="openArticleModal(1)" class="cursor-pointer bg-white rounded-3xl p-6 border border-slate-200/80 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all flex flex-col justify-between group">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-bold text-calm-700 bg-calm-100 px-3 py-1 rounded-full">Kesehatan Mental</span>
+                            <span class="text-xs text-slate-400 flex items-center gap-1"><i data-lucide="clock" class="w-3.5 h-3.5"></i> 4 mnt baca</span>
+                        </div>
+                        <h3 class="font-display font-bold text-lg text-slate-900 group-hover:text-calm-600 transition-colors">
+                            Mengenal Tanda Burnout & Stres Sekolah Sejak Dini
+                        </h3>
+                        <p class="text-sm text-slate-600 mt-2.5 line-clamp-3 leading-relaxed">
+                            Merasa lelah terus-menerus, mudah marah, atau kehilangan motivasi belajar? Bisa jadi kamu sedang mengalami academic burnout. Yuk kenali cara memulihkannya.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-sm font-bold text-calm-600">
+                        <span>Baca Selengkapnya</span>
+                        <i data-lucide="arrow-up-right" class="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
+                    </div>
+                </article>
+
+                <!-- Article Card 3 -->
+                <article onclick="openArticleModal(2)" class="cursor-pointer bg-white rounded-3xl p-6 border border-slate-200/80 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all flex flex-col justify-between group">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-bold text-sage-700 bg-sage-100 px-3 py-1 rounded-full">Keberanian Diri</span>
+                            <span class="text-xs text-slate-400 flex items-center gap-1"><i data-lucide="clock" class="w-3.5 h-3.5"></i> 3 mnt baca</span>
+                        </div>
+                        <h3 class="font-display font-bold text-lg text-slate-900 group-hover:text-calm-600 transition-colors">
+                            Berani Speak Up: Kamu Berhak Merasa Aman di Sekolah
+                        </h3>
+                        <p class="text-sm text-slate-600 mt-2.5 line-clamp-3 leading-relaxed">
+                            Melapor bukanlah tindakan "mengadu" atau lemah. Melapor adalah bentuk kepedulian untuk melindungi dirimu sendiri dan teman-teman lain dari lingkungan yang tidak sehat.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-sm font-bold text-calm-600">
+                        <span>Baca Selengkapnya</span>
+                        <i data-lucide="arrow-up-right" class="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="bg-white border-t border-slate-200 py-10">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-2.5">
+                <div class="w-8 h-8 rounded-xl bg-calm-600 text-white flex items-center justify-center">
+                    <i data-lucide="shield-check" class="w-4 h-4"></i>
+                </div>
+                <span class="font-display font-bold text-slate-800">RuangAman BK</span>
+            </div>
+             <p class="text-xs text-slate-500 text-center sm:text-right">
+                 Prototipe Layanan Bimbingan & Konseling Sekolah • Tampilan demo, belum menyimpan data nyata.
+             </p>
+        </div>
+    </footer>
+
+    <!-- ==================== FLOATING EMERGENCY BUTTON ==================== -->
+    <div class="fixed bottom-5 right-5 z-40">
+        <button type="button" onclick="openEmergencyModal()" class="flex items-center gap-2.5 bg-rose-600 hover:bg-rose-700 text-white font-bold text-xs sm:text-sm px-4 py-3.5 rounded-full shadow-lg shadow-rose-600/30 transition-all hover:scale-105 active:scale-95">
+            <span class="relative flex h-3 w-3">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-3 w-3 bg-white"></span>
+            </span>
+            <span>Butuh Bantuan Segera?</span>
+        </button>
+    </div>
+
+    <!-- ==================== MODAL: BACA ARTIKEL ==================== -->
+    <div id="article-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
+        <div class="bg-white rounded-3xl max-w-2xl w-full max-h-[85vh] overflow-y-auto shadow-2xl border border-slate-200 p-6 sm:p-8 relative">
+            <button type="button" onclick="closeArticleModal()" class="absolute top-5 right-5 p-2 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 transition-colors">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+            <span id="modal-article-tag" class="text-xs font-bold text-calm-700 bg-calm-100 px-3 py-1 rounded-full">Kategori</span>
+            <h3 id="modal-article-title" class="font-display font-extrabold text-xl sm:text-2xl text-slate-900 mt-3 pr-8">Judul Artikel</h3>
+            <p id="modal-article-meta" class="text-xs text-slate-400 mt-1 mb-5">Ditulis oleh Tim Konselor RuangAman</p>
+            <div id="modal-article-body" class="space-y-4 text-sm sm:text-base text-slate-700 leading-relaxed">
+                <!-- Dynamic Content -->
+            </div>
+            <div class="mt-8 pt-4 border-t border-slate-100 flex justify-between items-center">
+                <a href="#lapor" onclick="closeArticleModal()" class="text-xs sm:text-sm font-bold text-calm-600 hover:underline">Butuh teman bicara soal ini? Curhat ke BK &rarr;</a>
+                <button type="button" onclick="closeArticleModal()" class="bg-slate-800 hover:bg-slate-900 text-white text-sm font-semibold px-5 py-2.5 rounded-xl">Tutup</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== MODAL: KONFIRMASI BOOKING KONSELING ==================== -->
+    <div id="booking-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
+        <div class="bg-white rounded-3xl max-w-md w-full shadow-2xl border border-slate-200 p-6 sm:p-8 text-center">
+            <div class="w-16 h-16 rounded-full bg-sage-100 text-sage-600 flex items-center justify-center mx-auto mb-4">
+                <i data-lucide="calendar-heart" class="w-9 h-9"></i>
+            </div>
+            <h3 class="font-display font-extrabold text-xl text-slate-900">Jadwal Konseling Terkonfirmasi!</h3>
+            <p class="text-sm text-slate-600 mt-2 leading-relaxed">
+                Permintaan sesimu telah dicatat secara privat. Gunakan kode sesi di bawah ini saat menghubungi atau menemui Guru BK.
+            </p>
+            <div class="my-5 p-4 rounded-2xl bg-slate-50 border border-slate-200 text-left space-y-2 text-xs sm:text-sm">
+                <div class="flex justify-between">
+                    <span class="text-slate-500">Kode Sesi:</span>
+                    <span id="modal-booking-code" class="font-extrabold text-calm-700">#BK-412</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-slate-500">Konselor:</span>
+                    <span id="modal-booking-counselor" class="font-bold text-slate-800">-</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-slate-500">Waktu:</span>
+                    <span id="modal-booking-time" class="font-bold text-slate-800">-</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-slate-500">Metode:</span>
+                    <span id="modal-booking-method" class="font-bold text-sage-700">-</span>
+                </div>
+            </div>
+            <button type="button" onclick="closeBookingModal()" class="w-full bg-calm-600 hover:bg-calm-700 text-white font-bold py-3 rounded-xl transition-colors">
+                Mengerti, Terima Kasih
+            </button>
+        </div>
+    </div>
+
+    <!-- ==================== MODAL: DARURAT / BANTUAN CEPAT ==================== -->
+    <div id="emergency-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
+        <div class="bg-white rounded-3xl max-w-md w-full shadow-2xl border border-rose-200 p-6 sm:p-7 relative">
+            <button type="button" onclick="closeEmergencyModal()" class="absolute top-4 right-4 p-2 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+            <div class="flex items-center gap-3 text-rose-600 mb-3">
+                <div class="p-2.5 rounded-xl bg-rose-100">
+                    <i data-lucide="phone-call" class="w-6 h-6"></i>
+                </div>
+                <h3 class="font-display font-extrabold text-lg text-slate-900">Bantuan Cepat & Darurat</h3>
+            </div>
+            <p class="text-sm text-slate-600 leading-relaxed mb-5">
+                Jika kamu sedang dalam ancaman bahaya fisik, perundungan berat, atau merasa sangat tertekan dan butuh bicara segera, jangan ragu hubungi saluran berikut:
+            </p>
+            <div class="space-y-3 text-sm">
+                <div class="p-3.5 rounded-2xl bg-rose-50 border border-rose-200 flex items-center justify-between">
+                    <div>
+                        <p class="font-bold text-slate-900">Hotline Piket Guru BK Sekolah</p>
+                        <p class="text-xs text-slate-600">Respon cepat WhatsApp (07.00 - 17.00)</p>
+                    </div>
+                    <span class="font-display font-bold text-xs bg-rose-600 text-white px-3 py-1.5 rounded-xl">0812-3456-7890</span>
+                </div>
+                <div class="p-3.5 rounded-2xl bg-calm-50 border border-calm-200 flex items-center justify-between">
+                    <div>
+                        <p class="font-bold text-slate-900">Layanan SAPA 129 (KemenPPPA)</p>
+                        <p class="text-xs text-slate-600">Perlindungan Anak & Remaja 24 Jam</p>
+                    </div>
+                    <span class="font-display font-bold text-xs bg-calm-600 text-white px-3 py-1.5 rounded-xl">Telepon 129</span>
+                </div>
+                <div class="p-3.5 rounded-2xl bg-sage-50 border border-sage-200 flex items-center justify-between">
+                    <div>
+                        <p class="font-bold text-slate-900">Layanan Konseling Kemenkes</p>
+                        <p class="text-xs text-slate-600">Dukungan Kesehatan Jiwa Gratis</p>
+                    </div>
+                    <span class="font-display font-bold text-xs bg-sage-600 text-white px-3 py-1.5 rounded-xl">119 ext 8</span>
+                </div>
+            </div>
+            <button type="button" onclick="closeEmergencyModal()" class="w-full mt-6 bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold py-3 rounded-xl text-sm">
+                Tutup
+            </button>
+        </div>
+    </div>
+
+    <!-- ==================== MODAL: PERBESAR BUKTI ==================== -->
+<div id="evidence-viewer" onclick="if (event.target === this) closeEvidenceViewer()" class="fixed inset-0 z-[60] hidden items-center justify-center p-4 bg-slate-900/80 backdrop-blur-sm">
+    <div class="relative max-w-3xl w-full bg-white rounded-3xl p-4 sm:p-5 shadow-2xl">
+        <button type="button" onclick="closeEvidenceViewer()" aria-label="Tutup" class="absolute top-3 right-3 z-10 p-2 rounded-full bg-white/90 hover:bg-slate-200 text-slate-600 shadow">
+            <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+        <div id="evidence-viewer-body" class="flex justify-center items-center bg-slate-100 rounded-2xl overflow-hidden min-h-[200px]"></div>
+        <p id="evidence-viewer-name" class="mt-3 text-xs font-semibold text-slate-600 text-center break-all"></p>
+    </div>
+</div>
+
+    <!-- ==================== JAVASCRIPT LOGIC ==================== -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // State Variables
+        let selectedCategory = '';
+        let latestGeneratedTicket = '#RA-8492';
+        let selectedCounselorName = 'Ibu Guru BK, S.Pd.';
+        let selectedTimeText = '09:30 WIB (Istirahat 1)';
+
+        // Simulated Ticket Database
+        const ticketDatabase = {
+            '#RA-2026': {
+                category: 'Cyberbullying (Media Sosial)',
+                reply: '"Halo Nak, terima kasih banyak sudah berani bercerita ke RuangAman. Ibu mengapresiasi keberanianmu dan memastikan identitasmu tetap aman. Kamu tidak salah dalam situasi ini. Jika kamu nyaman, yuk kita ngobrol santai via chat/tatap muka supaya Ibu bisa bantu langkah perlindungan terbaik untukmu."'
+            }
+        };
+
+        // Educational Articles Data
+        const articlesData = [
+            {
+                tag: 'Anti-Bullying',
+                title: 'Cara Menghadapi Cyberbullying Tanpa Panik',
+                meta: 'Ditulis oleh Ibu Guru BK, S.Pd. • Waktu baca 3 menit',
+                paragraphs: [
+                    'Perundungan di dunia maya (cyberbullying) bisa terjadi kapan saja—lewat pesan langsung, grup kelas, maupun kolom komentar. Rasanya pasti kaget, marah, atau takut saat melihatnya.',
+                    '1. Jangan Membalas dengan Emosi: Pelaku cyberbullying sering kali mencari reaksi emosional darimu. Menahan diri untuk tidak membalas akan memutus rantai provokasi mereka.',
+                    '2. Simpan Semua Bukti (Screenshot): Sebelum menghapus pesan atau memblokir akun pelaku, ambil tangkapan layar yang memperlihatkan tanggal, jam, dan nama akun pelaku. Bukti ini sangat membantu Guru BK menindaklanjuti laporan.',
+                    '3. Gunakan Fitur Blokir & Laporkan: Manfaatkan fitur privasi di media sosialmu untuk membatasi komentar dan memblokir akun yang mengganggu.',
+                    '4. Ceritakan ke Orang Dewasa Terpercaya: Kamu tidak harus menanggungnya sendirian. Gunakan fitur Lapor Anonim di RuangAman agar Guru BK bisa mendampingimu dengan aman.'
+                ]
+            },
+            {
+                tag: 'Kesehatan Mental',
+                title: 'Mengenal Tanda Burnout & Stres Sekolah Sejak Dini',
+                meta: 'Ditulis oleh Bapak Guru BK, M.Psi. • Waktu baca 4 menit',
+                paragraphs: [
+                    'Tuntutan tugas, ujian, kegiatan ekstrakurikuler, hingga ekspektasi lingkungan terkadang membuat siswa mengalami kelelahan mental yang disebut academic burnout.',
+                    'Tanda-tanda yang sering muncul antara lain: tetap merasa lelah meski sudah tidur cukup, sulit fokus saat guru menjelaskan, mudah tersinggung, dan merasa nilai dirimu hanya ditentukan oleh angka rapor.',
+                    'Cara Mengatasinya: Cobalah teknik istirahat teratur (seperti metode Pomodoro: 25 menit belajar, 5 menit istirahat), kurangi membandingkan pencapaianmu dengan teman di media sosial, dan berikan apresiasi pada setiap progres kecilmu.',
+                    'Jika stres mulai mengganggu pola tidur atau nafsu makanmu, menjadwalkan sesi ngobrol ringan dengan konselor BK bisa sangat membantu mengurai beban pikiran.'
+                ]
+            },
+            {
+                tag: 'Keberanian Diri',
+                title: 'Berani Speak Up: Kamu Berhak Merasa Aman di Sekolah',
+                meta: 'Ditulis oleh Tim Konselor RuangAman • Waktu baca 3 menit',
+                paragraphs: [
+                    'Banyak siswa ragu melapor saat mengalami atau melihat perundungan karena takut dicap "tukang ngadu" atau khawatir pelaku akan membalas dendam.',
+                    'Penting untuk diingat: Melaporkan tindakan yang menyakiti fisik maupun mental bukanlah mengadu, melainkan langkah berani untuk menegakkan rasa aman bagi dirimu dan teman-temanmu.',
+                    'Di RuangAman, identitas pelapor dilindungi sepenuhnya. Kamu bahkan bisa melapor secara anonim tanpa mencantumkan nama maupun kelas. Satu langkah kecilmu hari ini bisa menghentikan perundungan agar tidak memakan korban lebih banyak lagi.'
+                ]
+            }
+        ];
+
+        // Set default booking date to tomorrow
+        window.addEventListener('DOMContentLoaded', () => {
+    const toLocalISO = (d) =>
+        new Date(d.getTime() - d.getTimezoneOffset() * 60000).toISOString().split('T')[0];
+
+    const dateInput = document.getElementById('booking-date');
+    const today = new Date();
+    const tomorrow = new Date();
+    tomorrow.setDate(today.getDate() + 1);
+
+    dateInput.min = toLocalISO(today);
+    dateInput.value = toLocalISO(tomorrow);
+    updateBookingSummary();
+});
+
+        // ==================== WIZARD FUNCTIONS ====================
+        function selectCategory(element, categoryName) {
+            selectedCategory = categoryName;
+            document.getElementById('step1-error').classList.add('hidden');
+
+            // Reset styling on all cards
+            document.querySelectorAll('.category-card').forEach(card => {
+                card.classList.remove('border-calm-600', 'bg-calm-50/70', 'ring-2', 'ring-calm-500/20');
+                card.classList.add('border-slate-200');
+            });
+
+            // Highlight selected card
+            element.classList.remove('border-slate-200');
+            element.classList.add('border-calm-600', 'bg-calm-50/70', 'ring-2', 'ring-calm-500/20');
+        }
+
+        function goToStep(stepNumber) {
+            if (stepNumber === 2 && !selectedCategory) {
+                document.getElementById('step1-error').classList.remove('hidden');
+                return;
+            }
+
+            if (stepNumber === 2) {
+                document.getElementById('selected-category-label').textContent = selectedCategory;
+            }
+
+            // Hide all steps
+            document.getElementById('wizard-step-1').classList.add('hidden');
+            document.getElementById('wizard-step-2').classList.add('hidden');
+            document.getElementById('wizard-step-3').classList.add('hidden');
+
+            // Show target step
+            document.getElementById(`wizard-step-${stepNumber}`).classList.remove('hidden');
+
+            // Update Stepper UI
+            updateStepperUI(stepNumber);
+        }
+
+        function updateStepperUI(activeStep) {
+            const ind1 = document.getElementById('step-ind-1');
+            const ind2 = document.getElementById('step-ind-2');
+            const ind3 = document.getElementById('step-ind-3');
+            const bar1 = document.getElementById('progress-bar-1');
+            const bar2 = document.getElementById('progress-bar-2');
+
+            if (activeStep >= 1) {
+                ind1.classList.remove('opacity-50');
+                ind1.querySelector('div').className = 'w-8 h-8 rounded-full bg-calm-600 text-white font-bold text-sm flex items-center justify-center';
+            }
+
+            if (activeStep >= 2) {
+                bar1.style.width = '100%';
+                ind2.classList.remove('opacity-50');
+                ind2.querySelector('div').className = 'w-8 h-8 rounded-full bg-calm-600 text-white font-bold text-sm flex items-center justify-center';
+            } else {
+                bar1.style.width = '0%';
+                ind2.classList.add('opacity-50');
+                ind2.querySelector('div').className = 'w-8 h-8 rounded-full bg-slate-300 text-slate-700 font-bold text-sm flex items-center justify-center';
+            }
+
+            if (activeStep >= 3) {
+                bar2.style.width = '100%';
+                ind3.classList.remove('opacity-50');
+                ind3.querySelector('div').className = 'w-8 h-8 rounded-full bg-sage-600 text-white font-bold text-sm flex items-center justify-center';
+            } else {
+                bar2.style.width = '0%';
+                ind3.classList.add('opacity-50');
+                ind3.querySelector('div').className = 'w-8 h-8 rounded-full bg-slate-300 text-slate-700 font-bold text-sm flex items-center justify-center';
+            }
+        }
+
+        function toggleAnonymity() {
+            const isAnon = document.getElementById('anon-toggle').checked;
+            const anonCard = document.getElementById('anon-card');
+            const anonBadge = document.getElementById('anon-badge');
+            const anonDesc = document.getElementById('anon-desc');
+            const anonIconBox = document.getElementById('anon-icon-box');
+            const identityFields = document.getElementById('identity-fields');
+
+            if (isAnon) {
+                anonCard.className = 'p-4 sm:p-5 rounded-2xl bg-sage-50 border-2 border-sage-300 transition-all';
+                anonBadge.textContent = 'AKTIF';
+                anonBadge.className = 'text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-sage-600 text-white';
+                anonDesc.textContent = 'Identitas disembunyikan. Guru BK tidak akan mengetahui nama maupun kelasmu.';
+                anonDesc.className = 'text-xs text-sage-800 mt-0.5';
+                anonIconBox.className = 'w-11 h-11 rounded-xl bg-sage-600 text-white flex items-center justify-center shrink-0 transition-colors';
+                identityFields.classList.add('hidden');
+                identityFields.classList.remove('grid');
+            } else {
+                anonCard.className = 'p-4 sm:p-5 rounded-2xl bg-slate-50 border-2 border-slate-200 transition-all';
+                anonBadge.textContent = 'NONAKTIF';
+                anonBadge.className = 'text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-slate-400 text-white';
+                anonDesc.textContent = 'Identitas akan disertakan secara rahasia hanya untuk Guru BK yang menangani.';
+                anonDesc.className = 'text-xs text-slate-600 mt-0.5';
+                anonIconBox.className = 'w-11 h-11 rounded-xl bg-calm-600 text-white flex items-center justify-center shrink-0 transition-colors';
+                identityFields.classList.remove('hidden');
+                identityFields.classList.add('grid');
+            }
+        }
+
+        function submitReport() {
+            const story = document.getElementById('story-text').value.trim();
+            const isAnon = document.getElementById('anon-toggle').checked;
+            const nameVal = document.getElementById('reporter-name').value.trim();
+            const errorBox = document.getElementById('step2-error');
+            const errorText = document.getElementById('step2-error-text');
+
+            if (story.length < 10) {
+                errorText.textContent = 'Mohon tuliskan ceritamu sedikit lebih detail (minimal 10 karakter) agar Guru BK dapat memahaminya.';
+                errorBox.classList.remove('hidden');
+                return;
+            }
+
+            if (!isAnon && nameVal === '') {
+                errorText.textContent = 'Karena mode anonim dimatikan, silakan isi nama/inisialmu atau aktifkan kembali mode anonim.';
+                errorBox.classList.remove('hidden');
+                return;
+            }
+
+            errorBox.classList.add('hidden');
+
+            // Generate Random Ticket Code
+            const randomNum = Math.floor(1000 + Math.random() * 9000);
+            latestGeneratedTicket = `#RA-${randomNum}`;
+
+            const urgencyVal = document.querySelector('input[name="urgency"]:checked').value;
+
+            // Save to local simulated DB
+            ticketDatabase[latestGeneratedTicket] = {
+                category: selectedCategory,
+                reply: `"Halo ${isAnon ? 'Sahabat RuangAman' : nameVal}, laporanmu dengan kategori '${selectedCategory}' (Prioritas: ${urgencyVal}) sudah diterima oleh Ibu Guru BK, S.Pd. Terima kasih sudah percaya pada RuangAman. Saat ini Guru BK sedang meninjau ceritamu dan siap mendampingimu."`
+            };
+
+            // Populate Step 3 Summary
+            document.getElementById('generated-ticket-code').textContent = latestGeneratedTicket;
+            document.getElementById('summary-anon').textContent = isAnon ? 'Anonim (Disembunyikan)' : `${nameVal}`;
+            document.getElementById('summary-urgency').textContent = urgencyVal;
+            document.getElementById('summary-evidence').textContent = evidenceFiles.length + ' file';
+
+            goToStep(3);
+        }
+
+        function copyTicketCode() {
+            const code = document.getElementById('generated-ticket-code').textContent;
+            const tempInput = document.createElement('input');
+            tempInput.value = code;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+
+            const feedback = document.getElementById('copy-feedback');
+            feedback.classList.remove('hidden');
+            setTimeout(() => feedback.classList.add('hidden'), 2500);
+        }
+
+        function prefillAndCheckTicket() {
+            document.getElementById('ticket-lookup-input').value = latestGeneratedTicket;
+            checkTicketStatus();
+            document.getElementById('cek-tiket').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function resetWizard() {
+            selectedCategory = '';
+            clearAllEvidence();
+            document.getElementById('story-text').value = '';
+            document.getElementById('reporter-name').value = '';
+            document.getElementById('reporter-class').value = '';
+            document.getElementById('anon-toggle').checked = true;
+            toggleAnonymity();
+
+            document.querySelectorAll('.category-card').forEach(card => {
+                card.classList.remove('border-calm-600', 'bg-calm-50/70', 'ring-2', 'ring-calm-500/20');
+                card.classList.add('border-slate-200');
+            });
+
+            goToStep(1);
+        }
+
+        // ==================== TICKET LOOKUP FUNCTIONS ====================
+        function useSampleTicket() {
+            document.getElementById('ticket-lookup-input').value = '#RA-2026';
+            checkTicketStatus();
+        }
+
+        function checkTicketStatus() {
+            let inputCode = document.getElementById('ticket-lookup-input').value.trim().toUpperCase();
+            if (!inputCode) return;
+            if (!inputCode.startsWith('#')) {
+                inputCode = '#' + inputCode;
+            }
+
+            const resultBox = document.getElementById('ticket-result-box');
+            const record = ticketDatabase[inputCode];
+
+            resultBox.classList.remove('hidden');
+            if (record) {
+                document.getElementById('res-ticket-code').textContent = inputCode;
+                document.getElementById('res-ticket-cat').textContent = record.category;
+                document.getElementById('res-counselor-reply').textContent = record.reply;
+            } else {
+                document.getElementById('res-ticket-code').textContent = inputCode;
+                document.getElementById('res-ticket-cat').textContent = 'Laporan Terdaftar';
+                document.getElementById('res-counselor-reply').textContent = '"Laporan dengan kode tiket ini sedang dalam peninjauan oleh Guru BK. Silakan cek kembali beberapa saat lagi atau ajukan jadwal sesi konseling jika ingin segera berdiskusi."';
+            }
+        }
+
+        // ==================== COUNSELING BOOKING FUNCTIONS ====================
+        function selectCounselor(btn, name) {
+            selectedCounselorName = name;
+            document.querySelectorAll('.counselor-card').forEach(card => {
+                card.classList.remove('border-calm-600', 'bg-calm-50/50');
+                card.classList.add('border-slate-200');
+            });
+            btn.classList.remove('border-slate-200');
+            btn.classList.add('border-calm-600', 'bg-calm-50/50');
+            updateBookingSummary();
+        }
+
+        function selectTimeSlot(btn, timeText) {
+            selectedTimeText = timeText;
+            document.querySelectorAll('.time-slot').forEach(slot => {
+                slot.classList.remove('border-calm-600', 'bg-calm-50', 'text-calm-700', 'font-bold');
+                slot.classList.add('border-slate-200', 'text-slate-600', 'font-semibold');
+            });
+            btn.classList.remove('border-slate-200', 'text-slate-600', 'font-semibold');
+            btn.classList.add('border-calm-600', 'bg-calm-50', 'text-calm-700', 'font-bold');
+            updateBookingSummary();
+        }
+
+        function updateBookingSummary() {
+            const method = document.querySelector('input[name="session-method"]:checked').value;
+            const dateVal = document.getElementById('booking-date').value;
+            const aliasVal = document.getElementById('booking-alias').value.trim();
+
+            document.getElementById('sum-counselor').textContent = selectedCounselorName;
+            document.getElementById('sum-method').textContent = method;
+            document.getElementById('sum-date').textContent = dateVal || 'Belum dipilih';
+            document.getElementById('sum-time').textContent = selectedTimeText;
+            document.getElementById('sum-alias').textContent = aliasVal !== '' ? aliasVal : 'Siswa Anonim';
+        }
+
+        function confirmBooking() {
+            const method = document.querySelector('input[name="session-method"]:checked').value;
+            const dateVal = document.getElementById('booking-date').value;
+            const randomBookingCode = `#BK-${Math.floor(100 + Math.random() * 899)}`;
+
+            document.getElementById('modal-booking-code').textContent = randomBookingCode;
+            document.getElementById('modal-booking-counselor').textContent = selectedCounselorName;
+            document.getElementById('modal-booking-time').textContent = `${dateVal}, ${selectedTimeText}`;
+            document.getElementById('modal-booking-method').textContent = method;
+
+            const modal = document.getElementById('booking-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeBookingModal() {
+            const modal = document.getElementById('booking-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        // ==================== MODAL FUNCTIONS (ARTICLES & EMERGENCY) ====================
+        function openArticleModal(index) {
+            const article = articlesData[index];
+            document.getElementById('modal-article-tag').textContent = article.tag;
+            document.getElementById('modal-article-title').textContent = article.title;
+            document.getElementById('modal-article-meta').textContent = article.meta;
+
+            const bodyContainer = document.getElementById('modal-article-body');
+            bodyContainer.innerHTML = '';
+            article.paragraphs.forEach(p => {
+                const pEl = document.createElement('p');
+                pEl.textContent = p;
+                bodyContainer.appendChild(pEl);
+            });
+
+            const modal = document.getElementById('article-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeArticleModal() {
+            const modal = document.getElementById('article-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function openEmergencyModal() {
+            const modal = document.getElementById('emergency-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeEmergencyModal() {
+            const modal = document.getElementById('emergency-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+        // ==================== BUKTI FOTO / VIDEO ====================
+const MAX_EVIDENCE_FILES = 5;
+const MAX_IMAGE_MB = 10;
+const MAX_VIDEO_MB = 100;
+let evidenceFiles = [];   // { id, file, url, type }
+let evidenceCounter = 0;
+
+function formatFileSize(bytes) {
+    if (bytes < 1024 * 1024) return Math.max(1, Math.round(bytes / 1024)) + ' KB';
+    return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+}
+
+function showEvidenceError(messages) {
+    const box = document.getElementById('evidence-error');
+    box.textContent = messages.join(' ');
+    box.classList.remove('hidden');
+}
+
+function hideEvidenceError() {
+    document.getElementById('evidence-error').classList.add('hidden');
+}
+
+function handleEvidenceInput(event) {
+    addEvidenceFiles(event.target.files);
+    event.target.value = ''; // supaya file yang sama bisa dipilih lagi
+}
+
+function addEvidenceFiles(fileList) {
+    const problems = [];
+
+    Array.from(fileList).forEach(file => {
+        const isImage = file.type.startsWith('image/');
+        const isVideo = file.type.startsWith('video/');
+
+        if (!isImage && !isVideo) {
+            problems.push(`"${file.name}" bukan foto atau video.`);
+            return;
+        }
+
+        const limitMB = isImage ? MAX_IMAGE_MB : MAX_VIDEO_MB;
+        if (file.size > limitMB * 1024 * 1024) {
+            problems.push(`"${file.name}" lebih dari ${limitMB} MB.`);
+            return;
+        }
+
+        const duplicate = evidenceFiles.some(e =>
+            e.file.name === file.name && e.file.size === file.size && e.file.lastModified === file.lastModified);
+        if (duplicate) {
+            problems.push(`"${file.name}" sudah ditambahkan.`);
+            return;
+        }
+
+        if (evidenceFiles.length >= MAX_EVIDENCE_FILES) {
+            problems.push(`Maksimal ${MAX_EVIDENCE_FILES} file.`);
+            return;
+        }
+
+        evidenceFiles.push({
+            id: ++evidenceCounter,
+            file: file,
+            url: URL.createObjectURL(file),
+            type: isImage ? 'image' : 'video'
+        });
+    });
+
+    renderEvidence();
+    if (problems.length) {
+        showEvidenceError([...new Set(problems)]);
+    } else {
+        hideEvidenceError();
+    }
+}
+
+function removeEvidence(id) {
+    const item = evidenceFiles.find(e => e.id === id);
+    if (item) URL.revokeObjectURL(item.url);
+    evidenceFiles = evidenceFiles.filter(e => e.id !== id);
+    hideEvidenceError();
+    renderEvidence();
+}
+
+function clearAllEvidence() {
+    evidenceFiles.forEach(e => URL.revokeObjectURL(e.url));
+    evidenceFiles = [];
+    hideEvidenceError();
+    renderEvidence();
+}
+
+function renderEvidence() {
+    const list = document.getElementById('evidence-list');
+    list.innerHTML = '';
+
+    evidenceFiles.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'relative rounded-xl overflow-hidden border border-slate-200 bg-slate-100 aspect-video cursor-pointer';
+        card.title = 'Klik untuk memperbesar';
+        card.addEventListener('click', () => openEvidenceViewer(item.id));
+
+        let media;
+        if (item.type === 'image') {
+            media = document.createElement('img');
+            media.src = item.url;
+            media.alt = item.file.name;
+        } else {
+            media = document.createElement('video');
+            media.src = item.url + '#t=0.1';
+            media.muted = true;
+            media.preload = 'metadata';
+            media.playsInline = true;
+        }
+        media.className = 'w-full h-full object-cover pointer-events-none';
+        card.appendChild(media);
+
+        const caption = document.createElement('div');
+        caption.className = 'absolute inset-x-0 bottom-0 px-2 py-1 bg-slate-900/60 text-white text-[10px] font-medium truncate';
+        caption.textContent = `${item.file.name} • ${formatFileSize(item.file.size)}`;
+        card.appendChild(caption);
+
+        if (item.type === 'video') {
+            const badge = document.createElement('span');
+            badge.className = 'absolute top-1.5 left-1.5 p-1 rounded-md bg-slate-900/60 text-white';
+            badge.innerHTML = '<i data-lucide="film" class="w-3.5 h-3.5"></i>';
+            card.appendChild(badge);
+        }
+
+        const removeBtn = document.createElement('button');
+        removeBtn.type = 'button';
+        removeBtn.setAttribute('aria-label', 'Hapus file');
+        removeBtn.className = 'absolute top-1.5 right-1.5 p-1 rounded-full bg-white/90 hover:bg-white text-slate-700 shadow';
+        removeBtn.innerHTML = '<i data-lucide="x" class="w-3.5 h-3.5"></i>';
+        removeBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            removeEvidence(item.id);
+        });
+        card.appendChild(removeBtn);
+
+        list.appendChild(card);
+    });
+
+    document.getElementById('evidence-count').textContent = `${evidenceFiles.length}/${MAX_EVIDENCE_FILES} file`;
+    lucide.createIcons();
+}
+
+function openEvidenceViewer(id) {
+    const item = evidenceFiles.find(e => e.id === id);
+    if (!item) return;
+
+    const body = document.getElementById('evidence-viewer-body');
+    body.innerHTML = '';
+
+    let el;
+    if (item.type === 'image') {
+        el = document.createElement('img');
+        el.src = item.url;
+        el.alt = item.file.name;
+        el.className = 'max-h-[75vh] max-w-full object-contain';
+    } else {
+        el = document.createElement('video');
+        el.src = item.url;
+        el.controls = true;
+        el.playsInline = true;
+        el.className = 'max-h-[75vh] max-w-full';
+    }
+    body.appendChild(el);
+
+    document.getElementById('evidence-viewer-name').textContent =
+        `${item.file.name} • ${formatFileSize(item.file.size)}`;
+
+    const modal = document.getElementById('evidence-viewer');
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+}
+
+function closeEvidenceViewer() {
+    const body = document.getElementById('evidence-viewer-body');
+    const video = body.querySelector('video');
+    if (video) video.pause();
+    body.innerHTML = '';
+
+    const modal = document.getElementById('evidence-viewer');
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+}
+
+function initEvidenceDropzone() {
+    const zone = document.getElementById('evidence-dropzone');
+    const highlight = ['border-calm-500', 'bg-calm-50'];
+
+    ['dragenter', 'dragover'].forEach(evt => {
+        zone.addEventListener(evt, (e) => {
+            e.preventDefault();
+            zone.classList.add(...highlight);
+        });
+    });
+    ['dragleave', 'drop'].forEach(evt => {
+        zone.addEventListener(evt, (e) => {
+            e.preventDefault();
+            zone.classList.remove(...highlight);
+        });
+    });
+    zone.addEventListener('drop', (e) => addEvidenceFiles(e.dataTransfer.files));
+}
+
+initEvidenceDropzone();
+
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeEvidenceViewer();
+});
+    </script>
+</body>
+</html>
